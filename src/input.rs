@@ -70,7 +70,7 @@ pub async fn run(mut txr: mpsc::Sender<Cmd>, f_chords: HashMap<Chord, Cmd>) -> R
                                 // Last iteration, 'd' was detected. We're looking for 'dx'
                                 // So we need to check if this most recent
                                 // event is 'x'.
-                                for chord in &maybe_chords {
+                                for chord in maybe_chords.drain() {
                                     if key == chord.1 {
                                         cmd = f_chords.get(&chord);
                                     }

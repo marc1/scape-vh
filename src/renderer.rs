@@ -20,6 +20,7 @@ pub async fn run<W>(mut w: W) -> Result<()> where W: Write {
     // f_chords meaning "Functional Chords", chords that have a command attached to them
     let mut f_chords: HashMap<Chord, Cmd> = HashMap::new();
     f_chords.insert(Chord('q', 'q'), Cmd::Quit);
+    f_chords.insert(Chord('a', 'k'), Cmd::DirUp);
 
     let (inp_txr, mut inp_recvr) = mpsc::channel::<Cmd>(5);
     tokio::spawn(input::run(inp_txr, f_chords));
